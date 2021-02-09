@@ -29,11 +29,15 @@ export class MovieService {
 
   searchData(title: string, type: SearchType): Observable < any > {
     return this.http.get('${this.url}?s=${encodeURI(title)}&type=${type}&apiKey=${this.apiKey}').pipe(
-      map(results => results['Search'])
-    );
+      map(results => {
+        console.log('RAW: ', results);
+        return results['Search']
+      })
+      );
   }
 
-  getDetails() {
+  getDetails(id) {
 
+    return this.http.get('${this.url}?i=${id}&plot=full&apiKey=${this.apiKey}');
   }
 }

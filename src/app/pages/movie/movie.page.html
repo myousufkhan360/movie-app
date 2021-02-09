@@ -1,9 +1,26 @@
 <ion-header>
-  <ion-toolbar>
-    <ion-title>movie</ion-title>
+  <ion-toolbar color="dark">
+    <ion-title>Movies Portal</ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content>
+<ion-content padding>
+
+  <ion-searchbar (ionChange)="searchChanged($event)" [(ngModel)]="searchTerm"></ion-searchbar>
+
+  <ion-item>
+    <ion-select (ionChange)="searchChanged($event)" [(ngModel)]="type">
+      <ion-select-option value="">All</ion-select-option>
+      <ion-select-option value="movie">Movies</ion-select-option>
+      <ion-select-option value="series">Series</ion-select-option>
+      <ion-select-option value="episode">Episode</ion-select-option>
+    </ion-select>
+  </ion-item>
+
+  <ion-list>
+    <ion-item *ngFor="let item of (results) | async" [routerLink]="['/','movie', item.imdbID]">
+      {{item.Title}}
+    </ion-item>
+  </ion-list>
 
 </ion-content>
