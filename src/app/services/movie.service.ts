@@ -28,7 +28,7 @@ export class MovieService {
   constructor(private http: HttpClient) {}
 
   searchData(title: string, type: SearchType): Observable < any > {
-    return this.http.get('${this.url}?s=${encodeURI(title)}&type=${type}&apiKey=${this.apiKey}').pipe(
+    return this.http.get(`${this.url}?s=${encodeURI(title)}&type=${type}&apiKey=${this.apiKey}`).pipe(
       map(results => {
         console.log('RAW: ', results);
         return results['Search']
@@ -38,6 +38,6 @@ export class MovieService {
 
   getDetails(id) {
 
-    return this.http.get('${this.url}?i=${id}&plot=full&apiKey=${this.apiKey}');
+    return this.http.get(`${this.url}?i=${id}&plot=full&apiKey=${this.apiKey}`);
   }
 }

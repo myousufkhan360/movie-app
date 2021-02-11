@@ -4,7 +4,7 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content padding>
+<ion-content>
 
   <ion-searchbar (ionChange)="searchChanged($event)" [(ngModel)]="searchTerm"></ion-searchbar>
 
@@ -19,7 +19,20 @@
 
   <ion-list>
     <ion-item *ngFor="let item of (results) | async" [routerLink]="['/','movie', item.imdbID]">
-      {{item.Title}}
+
+      <ion-avatar slot="start">
+        <img [src]="item.Poster" *ngIf="item.Poster != 'N/A'" />
+      </ion-avatar>
+
+      <ion-label text-wrap>
+        {{item.Title}}
+      </ion-label>
+      {{item.Year}}
+
+      <ion-icon slot="end" *ngIf="item.Type == 'movie'" name="videocam"></ion-icon>
+      <ion-icon slot="end" *ngIf="item.Type == 'series'" name="tv"></ion-icon>
+      <ion-icon slot="end" *ngIf="item.Type == 'game'" name="game-controller-outline"></ion-icon>
+
     </ion-item>
   </ion-list>
 
