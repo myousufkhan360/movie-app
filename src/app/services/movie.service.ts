@@ -23,7 +23,7 @@ export enum SearchType {
 export class MovieService {
 
   url = 'http://www.omdbapi.com/'
-  apiKey = '17e3e126';
+  apiKey = 'f523953';
 
   constructor(private http: HttpClient) {}
 
